@@ -553,13 +553,13 @@ class TaskListener(TaskConfig):
                         and not config_dict["DISABLE_DRIVE_LINK"]
                     ):
                         buttons.ubutton(
-                            "♻️ Drive Link",
+                            "Drive Link",
                             link,
                             "header"
                         )
                     elif not link.startswith("https://drive.google.com/"):
                         buttons.ubutton(
-                            "☁️ Cloud Link",
+                            "Cloud Link",
                             link,
                             "header"
                         )
@@ -578,7 +578,7 @@ class TaskListener(TaskConfig):
                     if mime_type == "Folder":
                         share_url += "/"
                     buttons.ubutton(
-                        "🔗 Rclone Link",
+                        "Rclone Link",
                         share_url
                     )
                 elif not rclonePath:
@@ -594,12 +594,12 @@ class TaskListener(TaskConfig):
                         share_url = f"{INDEX_URL}findpath?id={dir_id}"
                         if mime_type == "Folder":
                             buttons.ubutton(
-                                "📁 Direct Link",
+                                "Direct Link",
                                 share_url
                             )
                         else:
                             buttons.ubutton(
-                                "🔗 Direct Link",
+                                "Direct Link",
                                 share_url
                             )
                             if mime_type.startswith(
@@ -611,7 +611,7 @@ class TaskListener(TaskConfig):
                             ):
                                 share_urls = f"{INDEX_URL}findpath?id={dir_id}&view=true"
                                 buttons.ubutton(
-                                    "🌐 View Link",
+                                    "View Link",
                                     share_urls
                                 )
                 buttons = extra_btns(buttons)
@@ -637,7 +637,7 @@ class TaskListener(TaskConfig):
                         and config_dict["DISABLE_DRIVE_LINK"]
                     ):
                         buttons.ubutton(
-                            "♻️ Drive Link",
+                            "Drive Link",
                             link,
                             "header"
                         )

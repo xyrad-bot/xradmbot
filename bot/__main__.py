@@ -149,7 +149,7 @@ help_string = f"""
 <b>NOTE: Click on any CMD to see more detalis.</b>
 
 <b>Use Mirror commands for uploading to Cloud Drive:</b>
-<blockquote expanded>
+<blockquote expandable>
 /{BotCommands.MirrorCommand[0]} or /{BotCommands.MirrorCommand[1]}: Start mirroring to cloud.
 /{BotCommands.QbMirrorCommand[0]} or /{BotCommands.QbMirrorCommand[1]}: Start Mirroring to cloud using qBittorrent.
 /{BotCommands.JdMirrorCommand[0]} or /{BotCommands.JdMirrorCommand[1]}: Start Mirroring to cloud using JDownloader.

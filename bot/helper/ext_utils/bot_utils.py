@@ -243,7 +243,7 @@ async def get_telegraph_list(telegraph_content):
     path = [
         (
             await telegraph.create_page(
-                title="Z-Mirror Drive Search",
+                title="Bot Drive Search",
                 content=content
             )
         )["path"]
