@@ -241,25 +241,22 @@ async def get_readable_message(
             else get_readable_time(elapse)
         )
         user_tag = task.listener.tag.replace("@", "").replace("_", " ")
-        cancel_task = (
-            f"<code>/{BotCommands.CancelTaskCommand[1]} {task.gid()}</code>"
-            if not task.listener.getChat.has_protected_content
-            else f"<b>/{BotCommands.CancelTaskCommand[1]}_{task.gid()}</b>"
-        )
+        cancel_task = (f"<b>/{BotCommands.CancelTaskCommand[1]}_{task.gid()}</b>")
+            
 
         if (
             config_dict["DELETE_LINKS"]
             and int(config_dict["AUTO_DELETE_MESSAGE_DURATION"]) > 0
         ):
             msg += (
-                f"```\n#Zee{index + start_position}: "
+                f"```\nTask{index + start_position}: "
                 f"{escape(f"{task.name()}")}\n```"
                 if elapse <= config_dict["AUTO_DELETE_MESSAGE_DURATION"]
-                else f"\n<blockquote>#Zee{index + start_position}...(Processing)</blockquote>"
+                else f"\n<blockquote>Task{index + start_position}...(Processing)</blockquote>"
             )
         else:
             msg += (
-                f"```\n#Zee{index + start_position}: "
+                f"```\nTask{index + start_position}: "
                 f"{escape(f"{task.name()}")}\n```"
             )
         if tstatus not in [

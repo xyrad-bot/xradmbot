@@ -360,7 +360,7 @@ async def update_user_settings(query):
     media = (
         f"Thumbnails/{user_id}.jpg"
         if os_path.exists(f"Thumbnails/{user_id}.jpg")
-        else f"{def_media(JAVA.encode()).decode()}"
+        else f"https://github.com/xyrad-bot/xyrad/raw/main/images/thumbnails.jpg"
     )
     await query.message.edit_media(
         media=InputMediaPhoto(
@@ -382,7 +382,7 @@ async def user_settings(_, message):
     media = (
         f"Thumbnails/{user_id}.jpg"
         if os_path.exists(f"Thumbnails/{user_id}.jpg")
-        else f"{def_media(JAVA.encode()).decode()}"
+        else f"https://github.com/xyrad-bot/xyrad/raw/main/images/thumbnails.jpg"
     )
     usetMsg = await message.reply_photo(
         media,
