@@ -31,7 +31,7 @@ from os import (
 )
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from pyrogram import (
+from nekozee import (
     Client as tgClient
 )
 from qbittorrentapi import Client as qbClient
@@ -58,7 +58,7 @@ getLogger("urllib3").setLevel(INFO)
 getLogger("apscheduler").setLevel(ERROR)
 getLogger("httpx").setLevel(ERROR)
 getLogger("pymongo").setLevel(ERROR)
-getLogger("pyrogram").setLevel(ERROR)
+getLogger("nekozee").setLevel(ERROR)
 
 botStartTime = time()
 bot_loop = get_event_loop()
@@ -295,7 +295,6 @@ if len(USER_SESSION_STRING) != 0:
             app_version="@Z_Mirror Session",
             device_model="@Z_Mirror Bot",
             system_version="@Z_Mirror Server",
-            max_concurrent_transmissions=10,
         ).start()
         IS_PREMIUM_USER = user.me.is_premium # type: ignore
         log_info(f"Successfully logged into @{user.me.username} DC: {user.session.dc_id}.") # type: ignore
@@ -456,6 +455,20 @@ LEECH_CAPTION_FONT = environ.get(
 )
 if len(LEECH_CAPTION_FONT) == 0:
     LEECH_CAPTION_FONT = ""
+
+METADATA_TXT = environ.get(
+    "METADATA_TXT",
+    ""
+)
+if len(METADATA_TXT) == 0:
+    METADATA_TXT = ""
+
+META_ATTACHMENT = environ.get(
+    "META_ATTACHMENT",
+    ""
+)
+if len(META_ATTACHMENT) == 0:
+    META_ATTACHMENT = ""
 
 SEARCH_PLUGINS = environ.get(
     "SEARCH_PLUGINS",
@@ -1099,6 +1112,8 @@ config_dict = {
     "MIXED_LEECH": MIXED_LEECH,
     "MEGA_LIMIT": MEGA_LIMIT,
     "MINIMUM_DURATOIN": MINIMUM_DURATOIN,
+    "METADATA_TXT": METADATA_TXT,
+    "META_ATTACHMENT": META_ATTACHMENT,
     "NAME_SUBSTITUTE": NAME_SUBSTITUTE,
     "NZB_LIMIT": NZB_LIMIT,
     "PLAYLIST_LIMIT": PLAYLIST_LIMIT,
@@ -1276,7 +1291,6 @@ bot = tgClient(
     app_version="@Z_Mirror Session",
     device_model="@Z_Mirror Bot",
     system_version="@Z_Mirror Server",
-    max_concurrent_transmissions=10,
 ).start()
 
 BASE += ("oAtiUyppVYRQkuWg8DG2p")

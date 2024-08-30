@@ -3,8 +3,8 @@ from aiofiles.os import (
     remove
 )
 from base64 import b64encode
-from pyrogram.filters import command
-from pyrogram.handlers import MessageHandler
+from nekozee.filters import command
+from nekozee.handlers import MessageHandler
 from re import match as re_match
 
 from bot import (
@@ -140,6 +140,8 @@ class Mirror(TaskListener):
             "-ca": "", "-convertaudio": "",
             "-cv": "", "-convertvideo": "",
             "-ns": "", "-namesub": "",
+            "-md": "", "-metadata": "",
+            "-mda": "", "-metaattachment": "",
         }
 
         arg_parser(
@@ -167,6 +169,8 @@ class Mirror(TaskListener):
         self.convertVideo = args["-cv"] or args["-convertvideo"]
         self.nameSub = args["-ns"] or args["-namesub"]
         self.mixedLeech = args["-ml"] or args["-mixedleech"]
+        self.metaData = args["-md"] or args["-metadata"]
+        self.metaAttachment = args["-mda"] or args["-metaattachment"]
 
         headers = args["-h"] or args["-headers"]
         isBulk = args["-b"] or args["-bulk"]

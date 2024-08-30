@@ -44,6 +44,7 @@ class MirrorStatus:
     STATUS_SEEDING = "Seed 🌧"
     STATUS_SAMVID = "SampleVid 🎬"
     STATUS_CONVERTING = "Convert ♻️"
+    STATUS_METADATA = "Metadata 📝"
 
 
 STATUSES = {
@@ -61,6 +62,7 @@ STATUSES = {
     "CK": MirrorStatus.STATUS_CHECKING,
     "SV": MirrorStatus.STATUS_SAMVID,
     "PA": MirrorStatus.STATUS_PAUSED,
+    "MD": MirrorStatus.STATUS_METADATA
 }
 
 
@@ -252,19 +254,21 @@ async def get_readable_message(
             and int(config_dict["AUTO_DELETE_MESSAGE_DURATION"]) > 0
         ):
             msg += (
-                f"<pre>\r\n{index + start_position} ➜ "
-                f"{escape(f"{task.name()}")}\n</pre>"
+                f"<b><i>\n#Zee{index + start_position}: "
+                f"{escape(f"{task.name()}")}\n</i></b>"
                 if elapse <= config_dict["AUTO_DELETE_MESSAGE_DURATION"]
-                else f"\n<blockquote>{index + start_position} ➜ (Processing)</blockquote>"
+                else f"\n<b>#Zee{index + start_position}...(Processing)</b>"
             )
         else:
             msg += (
-                f"<pre>\r\n{index + start_position} ➜ "
-                f"{escape(f"{task.name()}")}\n</pre>"
+                f"<b><i>\n#Zee{index + start_position}: "
+                f"{escape(f"{task.name()}")}\n</i></b>"
             )
         if tstatus not in [
             MirrorStatus.STATUS_SEEDING,
+            MirrorStatus.STATUS_QUEUEDL,
             MirrorStatus.STATUS_QUEUEUP,
+            MirrorStatus.STATUS_METADATA
         ]:
             progress = (
                 await task.progress()
@@ -318,7 +322,7 @@ async def get_readable_message(
                 f"\n<code>UserID :</code> ||{task.listener.userId}||"
                 f"\n<code>Engine :</code> {task.engine}"
             )
-        msg += f"\n<blockquote>⚠️ {cancel_task}</blockquote>\n\n"
+        msg += f"\n⚠️ {cancel_task}\n\n"
 
     if len(msg) == 0:
         if status == "All":
